@@ -259,7 +259,7 @@
                 </span>
                 <h2 class="font-playful text-3xl md:text-5xl font-bold text-white mt-3">Pelican Retro Catch!</h2>
                 <p class="text-gray-400 mt-2 max-w-lg mx-auto">
-                    Vi gillar att göra spel, så vi byggde en mini-tribute! Hjälp pelikanen att samla öl (<i class="fa-solid fa-beer-mug-empty text-amber-500"></i>) och spelkontroller (<i class="fa-solid fa-gamepad text-neonBlue"></i>) men se upp för arga papper (<i class="fa-solid fa-file-invoice text-red-500"></i>)!
+                    Vi gillar att göra spel, så vi byggde en mini-tribute! Hjälp pelikanen att fånga öl (<i class="fa-solid fa-beer-mug-empty text-amber-500"></i>) och spelkontroller (<i class="fa-solid fa-gamepad text-neonBlue"></i>) innan de når marken! Undvik arga papper (<i class="fa-solid fa-file-invoice text-red-500"></i>).
                 </p>
             </div>
 
@@ -272,7 +272,7 @@
                         <span class="font-arcade text-[10px] text-brandPink tracking-wider uppercase">INSERT COIN TO PLAY</span>
                     </div>
                     <div class="text-right">
-                        <span class="font-arcade text-[9px] text-gray-400 uppercase">Pelican Studio v0.1</span>
+                        <span class="font-arcade text-[9px] text-gray-400 uppercase">Pelican Studio v0.2</span>
                     </div>
                 </div>
 
@@ -283,12 +283,12 @@
 
                     <!-- Start/Game Over Overlays -->
                     <div id="gameOverlay" class="absolute inset-0 bg-black/85 flex flex-col items-center justify-center text-center p-6 transition-opacity duration-300">
-                        <div id="overlayContent">
+                        <div id="overlayContent" class="max-w-md px-4">
                             <div class="w-16 h-16 bg-brandPink rounded-full flex items-center justify-center text-white mx-auto mb-4 animate-bounce">
                                 <i class="fa-solid fa-gamepad text-2xl"></i>
                             </div>
                             <h3 id="overlayTitle" class="font-arcade text-lg md:text-xl text-white tracking-widest uppercase mb-3">PELICAN CATCH</h3>
-                            <p id="overlayDesc" class="text-gray-300 text-sm max-w-sm mb-6">Styr med musen, pekskärmen eller piltangenterna på tangentbordet för att fånga föremål!</p>
+                            <p id="overlayDesc" class="text-gray-300 text-sm mb-6 leading-relaxed">Dra med musen/fingret eller använd piltangenterna. Tappa absolut inte öl eller kontroller i marken!</p>
                             <button onclick="startGame()" class="px-6 py-3 bg-brandPink hover:bg-brandPinkDark text-white font-arcade text-xs tracking-wider rounded-xl shadow-neonPink transition-transform transform hover:scale-105 active:scale-95">
                                 STARTA SPELET <i class="fa-solid fa-play ml-2"></i>
                             </button>
@@ -297,19 +297,10 @@
                 </div>
 
                 <!-- Game Controls Bar -->
-                <div class="bg-slate-900 p-4 border-t-4 border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-                    <div class="flex items-center gap-4 text-gray-400">
+                <div class="bg-slate-900 p-4 border-t-4 border-slate-800 flex items-center justify-around gap-4 text-xs">
+                    <div class="flex items-center gap-6 text-gray-400 font-semibold">
                         <span><i class="fa-solid fa-trophy text-amber-500 mr-1.5"></i> High Score: <strong id="highScoreText" class="text-white">0</strong></span>
                         <span><i class="fa-solid fa-circle-play text-neonBlue mr-1.5"></i> Poäng: <strong id="scoreText" class="text-white">0</strong></span>
-                    </div>
-                    <!-- Touch Controls for Mobile Users -->
-                    <div class="flex items-center gap-2 w-full sm:w-auto justify-center">
-                        <button id="btnLeft" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 active:bg-brandPink text-white font-bold rounded-xl text-lg select-none flex-1 sm:flex-initial">
-                            <i class="fa-solid fa-arrow-left"></i> Vänster
-                        </button>
-                        <button id="btnRight" class="px-5 py-3 bg-slate-800 hover:bg-slate-700 active:bg-brandPink text-white font-bold rounded-xl text-lg select-none flex-1 sm:flex-initial">
-                            Höger <i class="fa-solid fa-arrow-right"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -479,7 +470,7 @@
                 <span class="px-3 py-1 bg-neonBlue/20 text-neonBlue text-xs font-bold rounded-full border border-neonBlue/30 uppercase tracking-widest">
                     Friends & Family Pitch
                 </span>
-                <h2 class="font-playful text-3xl md:text-5xl font-bold text-white mt-3">Investringsmöjlighet</h2>
+                <h2 class="font-playful text-3xl md:text-5xl font-bold text-white mt-3">Investeringsmöjlighet</h2>
                 <p class="text-gray-400 mt-2 max-w-lg mx-auto">
                     Kika igenom vårt interaktiva presentationsmaterial för att förstå vår vision, studions framtid, och hur du kan vara en del av resan!
                 </p>
@@ -509,15 +500,15 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
                                 <div class="bg-darkBg/60 p-4 rounded-xl border border-gray-800">
                                     <h4 class="font-bold text-brandPink text-sm">Nils</h4>
-                                    <p class="text-xs text-gray-400 mt-1">Speldesign & Kodarkitekt</p>
+                                    <p class="text-xs text-gray-400 mt-1">Affärsgubbe</p>
                                 </div>
                                 <div class="bg-darkBg/60 p-4 rounded-xl border border-gray-800">
                                     <h4 class="font-bold text-neonBlue text-sm">Fredrik</h4>
-                                    <p class="text-xs text-gray-400 mt-1">Grafisk Design & UI/UX</p>
+                                    <p class="text-xs text-gray-400 mt-1">Cool kodare</p>
                                 </div>
                                 <div class="bg-darkBg/60 p-4 rounded-xl border border-gray-800">
                                     <h4 class="font-bold text-purple-400 text-sm">Per</h4>
-                                    <p class="text-xs text-gray-400 mt-1">Ljud & Affärsutveckling</p>
+                                    <p class="text-xs text-gray-400 mt-1">Konstnärssjäl</p>
                                 </div>
                             </div>
                         </div>
@@ -683,6 +674,7 @@
             }, 50);
         }
 
+        // CLOSE CUSTOM MODAL
         function closeModal() {
             const modal = document.getElementById('customModal');
             const modalContent = document.getElementById('modalContent');
@@ -796,6 +788,7 @@
         let gameRunning = false;
         let score = 0;
         let highScore = parseInt(localStorage.getItem('pelican_high_score') || '0');
+        let spawnTimeoutId = null;
         
         document.getElementById('highScoreText').innerText = highScore;
 
@@ -819,12 +812,6 @@
         let keys = {};
         window.addEventListener('keydown', (e) => { keys[e.key] = true; });
         window.addEventListener('keyup', (e) => { keys[e.key] = false; });
-
-        // Touch control buttons
-        document.getElementById('btnLeft').addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowLeft'] = true; });
-        document.getElementById('btnLeft').addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowLeft'] = false; });
-        document.getElementById('btnRight').addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowRight'] = true; });
-        document.getElementById('btnRight').addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowRight'] = false; });
         
         // Mouse/Touch movement tracking on Canvas
         function getCanvasMousePos(canvas, evt) {
@@ -855,15 +842,18 @@
                 y: -30,
                 width: 25,
                 height: 25,
-                speed: 3 + Math.random() * 4 + (score / 150), // speed increases as score goes up
+                // Moderate falling speed and slower progression scaling
+                speed: 1.5 + Math.random() * 2 + (score / 400),
                 type: randType
             });
             
-            // Schedule next spawn
-            setTimeout(spawnItem, Math.max(400, 1000 - (score * 5)));
+            if (spawnTimeoutId) clearTimeout(spawnTimeoutId);
+            // Slower spawning rate to give players plenty of time to catch items
+            spawnTimeoutId = setTimeout(spawnItem, Math.max(600, 1400 - (score * 4)));
         }
 
         function startGame() {
+            if (spawnTimeoutId) clearTimeout(spawnTimeoutId);
             document.getElementById('gameOverlay').classList.add('hidden');
             score = 0;
             document.getElementById('scoreText').innerText = score;
@@ -873,15 +863,30 @@
             requestAnimationFrame(gameLoop);
         }
 
-        function gameOver() {
+        function gameOver(failReason) {
             gameRunning = false;
+            if (spawnTimeoutId) {
+                clearTimeout(spawnTimeoutId);
+                spawnTimeoutId = null;
+            }
+            
             if (score > highScore) {
                 highScore = score;
                 localStorage.setItem('pelican_high_score', highScore);
                 document.getElementById('highScoreText').innerText = highScore;
             }
             document.getElementById('overlayTitle').innerText = "GAME OVER";
-            document.getElementById('overlayDesc').innerText = `Du samlade ${score} poäng! Bra jobbat! Kom och slå ditt highscore den 17:e!`;
+            
+            let message = "";
+            if (failReason === 'beer') {
+                message = "Du spillde ut en öl i marken! Det är helgerån under en ölkväll! 🍺";
+            } else if (failReason === 'controller') {
+                message = "Du tappade spelkontrollen i marken! Aj då, de är dyra! 🎮";
+            } else {
+                message = `Du samlade ihop ${score} poäng! Bra jobbat!`;
+            }
+
+            document.getElementById('overlayDesc').innerText = `${message} Totalt fick du ${score} poäng. Försök igen för att sätta nytt rekord!`;
             document.getElementById('gameOverlay').classList.remove('hidden');
         }
 
@@ -920,7 +925,11 @@
 
                 // Offscreen removal
                 if (item.y > canvas.height) {
-                    // Missed friendly items cost points or lives. Let's make it simpler: just drop them.
+                    // Game Over if a good item (beer or controller) drops to the ground
+                    if (item.type.type === 'beer' || item.type.type === 'controller') {
+                        gameOver(item.type.type);
+                        return; // Exit game loop logic immediately
+                    }
                     items.splice(i, 1);
                 }
             }

@@ -12,8 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Press+Start+2P&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Canvas / Confetti Effects -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -324,149 +322,10 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="font-playful text-3xl md:text-5xl font-bold text-center text-white mb-4">SÄKRA DIN PLATS</h2>
             <p class="text-center text-gray-300 max-w-md mx-auto mb-12">
-                Anmäl dig nedan så vi vet hur mycket gratis öl och tilltugg vi behöver ladda upp kylarna med! Du får ett anpassat digitalt pass direkt.
+                Anmäl dig nedan så vi vet hur mycket gratis öl och tilltugg vi behöver ladda upp kylarna med!
             </p>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                <!-- Registration Form -->
-                <div class="bg-cardBg border border-brandPink/20 rounded-2xl p-6 md:p-8 shadow-2xl lg:col-span-7">
-                    <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-300 mb-2">Ditt Namn *</label>
-                            <input type="text" id="guestName" required placeholder="T.ex. Johan Andersson" 
-                                class="w-full bg-darkBg border border-gray-700 focus:border-brandPink rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brandPink/30 transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-300 mb-2">E-postadress *</label>
-                            <input type="email" id="guestEmail" required placeholder="johan@exempel.se" 
-                                class="w-full bg-darkBg border border-gray-700 focus:border-brandPink rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brandPink/30 transition-all">
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-300 mb-2">Föredragen bärs / dryck</label>
-                                <select id="guestDrink" class="w-full bg-darkBg border border-gray-700 focus:border-brandPink rounded-xl px-4 py-3 text-white focus:outline-none transition-all">
-                                    <option value="IPA / Craft">Hoppig IPA / Craft Beer</option>
-                                    <option value="Lager">Klassisk Ljus Lager</option>
-                                    <option value="Cider">Söt Cider</option>
-                                    <option value="Alkoholfri">Alkoholfri Öl / Läsk</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-300 mb-2">Kommer du testa spelet?</label>
-                                <select id="guestPlayTest" class="w-full bg-darkBg border border-gray-700 focus:border-brandPink rounded-xl px-4 py-3 text-white focus:outline-none transition-all">
-                                    <option value="Självklart!">Självklart, vill spela direkt!</option>
-                                    <option value="Kanske">Kanske, beror på kön</option>
-                                    <option value="Bara titta">Nöjer mig med att titta på</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-300 mb-2">Nyfiken på investeringsmöjligheten?</label>
-                            <div class="flex items-center gap-4 mt-2">
-                                <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-300">
-                                    <input type="radio" name="investorInterest" value="Ja" checked class="accent-brandPink w-4 h-4">
-                                    <span>Ja, berätta mer!</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-300">
-                                    <input type="radio" name="investorInterest" value="Kanske" class="accent-brandPink w-4 h-4">
-                                    <span>Kanske, vi får se</span>
-                                </label>
-                                <label class="flex items-center gap-2 cursor-pointer text-sm text-gray-300">
-                                    <input type="radio" name="investorInterest" value="Bara fest" class="accent-brandPink w-4 h-4">
-                                    <span>Kommer bara för öl & häng</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-brandPink to-pink-600 hover:from-brandPinkDark hover:to-pink-700 text-white font-bold rounded-xl shadow-neonPink hover:shadow-lg transition-all flex items-center justify-center gap-3">
-                            <i class="fa-solid fa-ticket"></i> REGISTRERA MIN ENTRÉBILJETT
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Live Generated Digital Pass -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div id="ticketContainer" class="bg-cardBg border-2 border-dashed border-brandPink/40 rounded-3xl p-6 relative overflow-hidden shadow-2xl transition-all duration-500">
-                        <div class="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-darkBg rounded-full border-r border-brandPink/30"></div>
-                        <div class="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-darkBg rounded-full border-l border-brandPink/30"></div>
-
-                        <!-- Ticket Header -->
-                        <div class="flex justify-between items-center border-b border-gray-800 pb-4 mb-4">
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-feather-pointed text-brandPink"></i>
-                                <span class="text-xs font-arcade text-gray-400">PELICAN ENTRÉ</span>
-                            </div>
-                            <span class="text-xs font-bold text-neonBlue px-2 py-0.5 bg-neonBlue/10 rounded-full border border-neonBlue/20">V.I.P GÄST</span>
-                        </div>
-
-                        <!-- Ticket Body -->
-                        <div class="space-y-4">
-                            <div class="text-center py-2">
-                                <h4 class="font-playful text-2xl font-bold text-white tracking-wide uppercase">ÖL & SPELKVÄLL</h4>
-                                <p class="text-[11px] text-gray-400 font-mono tracking-widest mt-1">CODE: PELICAN-SPEL-2026</p>
-                            </div>
-
-                            <!-- Dynamic Guest Details -->
-                            <div class="bg-darkBg/60 border border-gray-800 rounded-xl p-4 space-y-3">
-                                <div class="flex justify-between text-xs">
-                                    <span class="text-gray-500">GÄSTNAMN:</span>
-                                    <span id="ticketName" class="font-bold text-white">DIN RESERVATION</span>
-                                </div>
-                                <div class="flex justify-between text-xs">
-                                    <span class="text-gray-500">VALD DRYCK:</span>
-                                    <span id="ticketDrink" class="font-bold text-brandPink">-</span>
-                                </div>
-                                <div class="flex justify-between text-xs">
-                                    <span class="text-gray-500">PLAYTEST:</span>
-                                    <span id="ticketPlay" class="font-bold text-neonBlue">-</span>
-                                </div>
-                                <div class="flex justify-between text-xs">
-                                    <span class="text-gray-500">DATUM/TID:</span>
-                                    <span class="font-bold text-white">17 SEPT - 18:01</span>
-                                </div>
-                            </div>
-
-                            <!-- Mock QR Code -->
-                            <div class="flex flex-col items-center justify-center py-2 gap-2 border-t border-gray-800">
-                                <div class="w-24 h-24 bg-white p-1 rounded-lg flex items-center justify-center">
-                                    <!-- Simple SVG Mock QR Code -->
-                                    <svg class="w-full h-full" viewBox="0 0 100 100" fill="black">
-                                        <rect x="0" y="0" width="20" height="20"/>
-                                        <rect x="5" y="5" width="10" height="10" fill="white"/>
-                                        <rect x="80" y="0" width="20" height="20"/>
-                                        <rect x="85" y="5" width="10" height="10" fill="white"/>
-                                        <rect x="0" y="80" width="20" height="20"/>
-                                        <rect x="5" y="85" width="10" height="10" fill="white"/>
-                                        <!-- Random QR pixels -->
-                                        <rect x="30" y="10" width="10" height="10"/>
-                                        <rect x="50" y="20" width="15" height="10"/>
-                                        <rect x="40" y="40" width="20" height="20"/>
-                                        <rect x="10" y="40" width="10" height="15"/>
-                                        <rect x="70" y="50" width="15" height="15"/>
-                                        <rect x="30" y="70" width="25" height="10"/>
-                                        <rect x="70" y="80" width="10" height="10"/>
-                                    </svg>
-                                </div>
-                                <span class="text-[9px] text-gray-500 font-mono tracking-wider">SKANNA VID ENTRÉN</span>
-                            </div>
-                        </div>
-
-                        <!-- Ticket Footer Ribbon -->
-                        <div class="bg-gradient-to-r from-brandPink to-neonBlue h-1.5 absolute bottom-0 inset-x-0"></div>
-                    </div>
-
-                    <!-- Invitation Reminder Banner -->
-                    <div class="bg-cardBg border border-neonBlue/20 rounded-2xl p-5 flex items-center gap-4 shadow-md">
-                        <div class="text-3xl text-neonBlue"><i class="fa-solid fa-circle-info"></i></div>
-                        <p class="text-xs text-gray-300 leading-relaxed">
-                            <strong>Ingen fara om du inte kan komma!</strong> Du är ändå varmt välkommen att hålla kontakten och kika på vår investeringspitch precis här nedanför.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfElxRBUsdxB2dWEs-GzNdQVUN1iKdxy2JJBW0KfBDDry5KUA/viewform?embedded=true" width="800" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
     </section>
 
@@ -736,57 +595,6 @@
                 currentSlide = totalSlides;
             }
             updateSlideUI();
-        }
-
-        // RSVP FORM PROCESSING
-        function handleRSVP(event) {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value;
-            const email = document.getElementById('guestEmail').value;
-            const drink = document.getElementById('guestDrink').value;
-            const playTest = document.getElementById('guestPlayTest').value;
-
-            // Update Digital Ticket
-            document.getElementById('ticketName').innerText = name.toUpperCase();
-            document.getElementById('ticketDrink').innerText = drink.toUpperCase();
-            document.getElementById('ticketPlay').innerText = playTest.toUpperCase();
-
-            // Store in LocalStorage
-            const guestData = { name, email, drink, playTest };
-            localStorage.setItem('pelican_rsvp', JSON.stringify(guestData));
-
-            // Visual effects
-            confetti({
-                particleCount: 150,
-                spread: 80,
-                origin: { y: 0.6 },
-                colors: ['#ff1d8e', '#00f0ff', '#ffffff']
-            });
-
-            // Play nice sound using Web Audio API synthesized ping
-            playBip();
-
-            showCustomModal("Klart & bokat!", `Välkommen, ${name}! Din biljett är nu skapad. Vi ses den 17:e kl 18:01 på Stortorget 7!`);
-        }
-
-        // AUDIO GENERATOR
-        function playBip() {
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1); // A5
-                gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.25);
-            } catch (e) {
-                // Ignore silent audio contexts
-            }
         }
 
         // RETRO CANVAS MINI GAME "PELICAN RETRO CATCH"

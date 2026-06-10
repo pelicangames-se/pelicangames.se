@@ -11,7 +11,7 @@
     <!-- Google Fonts: Inter & Press Start 2P for retro arcade feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Press+Start+2P&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -25,9 +25,12 @@
                         neonBlue: '#00f0ff',
                     },
                     fontFamily: {
-                        sans: ['"Rethink Sans"', 'Inter', 'sans-serif'],
+                        sans: ['"Rethink Sans"', 'sans-serif'],
                         arcade: ['"Press Start 2P"', 'cursive'],
-                        playful: ['Rethink Sans Bold', 'sans-serif']
+                        playful: ['"Rethink Sans"', {
+                            fontFeatureSettings: 'normal',
+                            fontWeight: '900',
+                    }, 'sans-serif']
                     },
                     boxShadow: {
                         neonPink: '0 0 15px rgba(255, 29, 142, 0.6), 0 0 30px rgba(255, 29, 142, 0.3)',
@@ -38,27 +41,15 @@
         }
     </script>
     <style>
-        @font-face {
-            font-family: 'Rethink Sans';
-            src: url('https://pelicangames.se/RethinkSans.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Rethink Sans Bold';
-            src: url('https://pelicangames.se/RethinkSans.ttf') format('truetype');
-            font-weight: 900;
-            font-style: normal;
-            font-display: swap;
-        }
         .glow-text-pink {
             text-shadow: 0 0 10px rgba(255, 29, 142, 0.8), 0 0 20px rgba(255, 29, 142, 0.4);
         }
         .glow-pink {
-            svg {
-                filter: drop-shadow(0 10px rgba(255, 29, 142, 0.8), 0 0 20px rgba(255, 29, 142, 0.4));
+            path, circle, rect, text {
+                filter: drop-shadow(0 2px 8px rgba(255, 29, 142, 0.8)) 
+                        drop-shadow(0 0 40px rgba(255, 29, 142, 0.4));
             }
+            overflow: visible;
         }
         .glow-text-blue {
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
@@ -196,7 +187,7 @@
                     }
 
                     .st16 {
-                        fill: #450b23;
+                        fill: #99184e;
                     }
                     </style>
                     <linearGradient id="linear-gradient" x1="214.6" y1="52.3" x2="259.6" y2="293.1" gradientUnits="userSpaceOnUse">
@@ -303,7 +294,7 @@
     <!-- Event Details & Map Section -->
     <section id="event" class="py-16 px-4 bg-cardBg/40 border-y border-brandPink/10 relative scroll-mt-40">
         <div class="max-w-5xl mx-auto">
-            <h2 class="font-playful text-3xl md:text-5xl font-bold text-center text-white mb-12 flex items-center justify-center gap-4">
+            <h2 class="font-playful text-3xl md:text-5xl font-black text-center text-white mb-12 flex items-center justify-center gap-4">
                 <span class="text-neonBlue"><i class="fa-solid fa-calendar-days"></i></span>
                 TID & PLATS
             </h2>
@@ -409,7 +400,7 @@
     <section id="rsvp" class="py-20 px-4 relative scroll-mt-20">
         <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 bg-neonBlue/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="max-w-4xl mx-auto">
-            <h2 class="font-playful text-3xl md:text-5xl font-bold text-center text-white mb-4">SÄKRA DIN PLATS</h2>
+            <h2 class="font-playful text-3xl md:text-5xl font-black text-center text-white mb-4">SÄKRA DIN PLATS</h2>
             <p class="text-center text-gray-300 max-w-md mx-auto mb-12">
                 Anmäl dig nedan så vi vet hur mycket gratis öl och tilltugg vi behöver ladda upp kylarna med!
             </p>
@@ -427,7 +418,7 @@
                 <span class="px-3 py-1 bg-neonBlue/20 text-neonBlue text-xs font-bold rounded-full border border-neonBlue/30 uppercase tracking-widest">
                     Friends & Family Pitch
                 </span>
-                <h2 class="font-playful text-3xl md:text-5xl font-bold text-white mt-3 py-4">INVESTERINGSMÖJLIGHET</h2>
+                <h2 class="font-playful text-3xl md:text-5xl font-black text-white mt-3 py-4">INVESTERINGSMÖJLIGHET</h2>
                 <p class="text-gray-400 mt-2 max-w-lg mx-auto">
                     Några av våra vänner har tidigare uttryckt intresse av investera i vårt bolag, men innan vi dyker för djupt i det tänkte vi ta tempen på hur många som är intresserade. Är du intresserad och vill veta mer?
                 </p>
@@ -445,7 +436,7 @@
                 <span class="px-3 py-1 bg-brandPink/20 text-brandPink text-xs font-bold rounded-full border border-brandPink/30 uppercase tracking-widest">
                     Fördriv tid
                 </span>
-                <h2 class="font-playful text-3xl md:text-5xl font-bold text-white mt-3 py-4">PELICAN RETRO CATCH!</h2>
+                <h2 class="font-playful text-3xl md:text-5xl font-black text-white mt-3 py-4">PELICAN RETRO CATCH!</h2>
                 <p class="text-gray-400 mt-2 max-w-lg mx-auto">
                     Hjälp pelikanen att fånga öl (🍺) och spelkontroller (🎮) innan de når marken! Undvik arga papper (📄).
                 </p>

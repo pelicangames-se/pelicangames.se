@@ -20,6 +20,7 @@
                     colors: {
                         brandPink: '#ff2882',
                         brandPinkDark: '#d11070',
+                        brandPinkLight: '#ff4791',
                         darkBg: '#0b0514',
                         cardBg: '#160d26',
                         neonBlue: '#00f0ff',
@@ -33,26 +34,20 @@
                     }, 'sans-serif']
                     },
                     boxShadow: {
-                        neonPink: '0 0 15px rgba(255, 29, 142, 0.6), 0 0 30px rgba(255, 29, 142, 0.3)',
-                        neonBlue: '0 0 15px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.3)',
+                        neonPink: '0 0 15px rgba(255, 29, 142, 0.6), 0 0 30px rgba(255, 29, 142, 0.7)',
+                        neonBlue: '0 0 1px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.4)',
                     }
                 }
             }
         }
     </script>
     <style>
-        .glow-text-pink {
-            text-shadow: 0 0 10px rgba(255, 29, 142, 0.8), 0 0 20px rgba(255, 29, 142, 0.4);
-        }
         .glow-pink {
             path, circle, rect, text {
                 filter: drop-shadow(0 2px 8px rgba(255, 29, 142, 0.8)) 
-                        drop-shadow(0 0 40px rgba(255, 29, 142, 0.4));
+                        drop-shadow(0 0 32px rgba(255, 29, 142, 0.4));
             }
             overflow: visible;
-        }
-        .glow-text-blue {
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -94,7 +89,7 @@
             <div class="hidden md:flex items-center gap-6 font-medium text-sm tracking-wide">
                 <a href="#event" class="hover:text-brandPink transition-colors">Eventet</a>
                 <a href="#pitch" class="hover:text-brandPink transition-colors">Investeringspitch</a>
-                <a href="#rsvp" class="bg-brandPink hover:bg-brandPinkDark text-white px-4 py-2 rounded-full shadow-neonPink transition-all transform hover:-translate-y-0.5 active:translate-y-0">Anmäl Dig</a>
+                <a href="#rsvp" class="bg-brandPink hover:bg-brandPinkLight text-white px-4 py-2 rounded-full hover:shadow-neonPink transition-transform transform hover:scale-105 active:scale-95">Anmäl Dig</a>
             </div>
             <!-- Mobile Menu button -->
             <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-brandPink focus:outline-none">
@@ -281,7 +276,7 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 bg-brandPink hover:bg-brandPinkDark text-white font-bold rounded-full shadow-neonPink transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
+                <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 bg-brandPink hover:bg-brandPinkLight text-white font-bold rounded-full hover:shadow-neonPink transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
                     <i class="fa-solid fa-beer-mug-empty"></i> OSA & SÄKRA GRATIS BÄRS
                 </a>
                 <a href="#pitch" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-white/10 text-neonBlue border-2 border-neonBlue hover:shadow-neonBlue font-bold rounded-full transform hover:-translate-y-1 transition-all flex items-center justify-center gap-3">
@@ -423,7 +418,7 @@
                     Några av våra vänner har tidigare uttryckt intresse av investera i vårt bolag, men innan vi dyker för djupt i det tänkte vi ta tempen på hur många som är intresserade. Är du intresserad och vill veta mer?
                 </p>
                 <p class="mt-6">
-                    <a href="https://docsend.com/view/u44utixmsnd945ek" target="_blank" class="inline-block px-8 py-3.5 bg-brandPink hover:bg-brandPinkDark text-white font-semibold rounded-full shadow-neonPink transition-all transform hover:-translate-y-1 hover:scale-105 active:translate-y-0">Läs pitchen</a>
+                    <a href="https://docsend.com/view/u44utixmsnd945ek" target="_blank" class="inline-block px-8 py-3.5 bg-brandPink hover:bg-brandPinkLight text-white font-semibold rounded-full hover:shadow-neonPink transition-transform transform hover:scale-105 active:scale-95">Läs pitchen</a>
                 </p>
             </div>
         </div>
@@ -468,7 +463,7 @@
                             </div>
                             <h3 id="overlayTitle" class="font-arcade text-lg md:text-xl text-white tracking-widest uppercase mb-3">PELICAN CATCH</h3>
                             <p id="overlayDesc" class="text-gray-300 text-sm mb-6 leading-relaxed">Dra med musen/fingret eller använd piltangenterna. Tappa absolut inte öl eller kontroller i marken!</p>
-                            <button onclick="startGame()" class="px-6 py-3 bg-brandPink hover:bg-brandPinkDark text-white font-arcade text-xs tracking-wider rounded-xl shadow-neonPink transition-transform transform hover:scale-105 active:scale-95">
+                            <button onclick="startGame()" class="px-6 py-3 bg-brandPink hover:bg-brandPinkLight text-white font-arcade text-xs tracking-wider rounded-xl hover:shadow-neonPink transition-transform transform hover:scale-105 active:scale-95">
                                 STARTA SPELET <i class="fa-solid fa-play ml-2"></i>
                             </button>
                         </div>

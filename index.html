@@ -121,6 +121,20 @@
       animation: subtleFloat 3.8s ease-in-out infinite;
     }
 
+    @keyframes arrowBob {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(9px);
+      }
+    }
+
+    .arrow-bob {
+      animation: arrowBob 1.8s ease-in-out infinite;
+      will-change: transform;
+    }
+
     /* Hardware-accelerated transforms and steady transform-origin for smooth flight scaling */
     #fly-pelican,
     #fly-pelican-text,
@@ -191,9 +205,15 @@
       filter: url(#white-filter);
     }
 
-    /* Hero scroll prompt GPU opacity transition */
+    /* Hero scroll prompt GPU opacity transition and scroll fadeout */
     #scroll-prompt {
-      transition: opacity 0.3s ease-out;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #scroll-prompt.is-faded {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translate3d(-50%, 12px, 0) !important;
     }
 
     /* Navigation header container */
@@ -523,13 +543,24 @@
         <div id="anchor-center-games" class="opacity-0 pointer-events-none"></div>
       </div>
 
-      <!-- Scroll cue -->
-      <div id="scroll-prompt" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 is-pre-reveal opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="scrollToStudio()">
-        <span class="text-xs uppercase tracking-widest text-brand font-mono font-medium">Scroll to Discover</span>
-        <div class="w-5 h-8 border-2 border-brand/60 rounded-full flex justify-center pt-1">
-          <div class="w-1.5 h-2 bg-brand rounded-full animate-bounce"></div>
+      <!-- Scroll cue: Bobbing Down Arrow -->
+      <button 
+        id="scroll-prompt" 
+        type="button"
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center justify-center p-3 is-pre-reveal opacity-80 hover:opacity-100 transition-opacity cursor-pointer group focus:outline-none" 
+        onclick="scrollToStudio()"
+        aria-label="Scroll to discover"
+      >
+        <div class="arrow-bob flex items-center justify-center group-hover:drop-shadow-[0_0_14px_rgba(255,0,106,0.85)] transition-all">
+          <img 
+            id="down-arrow-img"
+            src="assets/down-arrow.svg" 
+            alt="" 
+            aria-hidden="true"
+            class="w-7 h-7 sm:w-8 sm:h-8 object-contain select-none pointer-events-none logo-vector-img"
+          />
         </div>
-      </div>
+      </button>
     </section>
 
     <!-- Section 2: Studio Statement (Centered across cols 2-5 with 1-col gutters) -->
@@ -1356,13 +1387,12 @@
         }
       }
 
-      // Smooth scroll prompt fadeout
+      // Smooth scroll prompt fadeout on scroll
       if (scrollPrompt) {
-        const promptActive = scrollY < 35;
+        const promptActive = scrollY < 30;
         if (isPromptVisible !== promptActive) {
           isPromptVisible = promptActive;
-          scrollPrompt.classList.toggle('opacity-0', !promptActive);
-          scrollPrompt.classList.toggle('pointer-events-none', !promptActive);
+          scrollPrompt.classList.toggle('is-faded', !promptActive);
         }
       }
     }
@@ -1439,9 +1469,11 @@
           const desktopNav = document.getElementById('desktop-nav');
           if (desktopNav) desktopNav.classList.remove('is-pre-reveal');
           if (menuToggleBtn) menuToggleBtn.classList.remove('is-pre-reveal');
-          if (scrollPrompt && (window.scrollY || 0) < 35) {
-            isPromptVisible = true;
+          if (scrollPrompt) {
+            const isAtTop = (window.scrollY || 0) < 30;
+            isPromptVisible = isAtTop;
             scrollPrompt.classList.remove('is-pre-reveal');
+            scrollPrompt.classList.toggle('is-faded', !isAtTop);
           }
         });
       });

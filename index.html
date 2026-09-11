@@ -104,7 +104,7 @@
       height: 0;
     }
 
-    .text-glow {
+    .text-glow {    
       text-shadow: 0 0 28px rgba(255, 0, 106, 0.55);
     }
 
@@ -209,6 +209,36 @@
       }
     }
 
+    /* Static anti-FOUC and pre-reveal rules so nothing flickers before Tailwind loads */
+    .is-pre-reveal,
+    #main-header.is-pre-reveal,
+    #desktop-nav.is-pre-reveal,
+    #flight-stage.is-pre-reveal,
+    #menu-toggle-btn.is-pre-reveal,
+    #scroll-prompt.is-pre-reveal {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    #main-header,
+    #flight-stage,
+    #menu-toggle-btn,
+    #scroll-prompt {
+      transition: opacity 0.5s ease-out;
+    }
+
+    /* Critical static CSS for desktop nav so it never renders unstyled before Tailwind */
+    #desktop-nav {
+      display: none;
+      font-family: 'Rethink Sans', sans-serif;
+    }
+
+    @media (min-width: 768px) {
+      #desktop-nav {
+        display: flex;
+      }
+    }
+
     /* Dedicated hardware-composited blur backdrop that extends through the status bar */
     .nav-blur-bg {
       position: absolute;
@@ -265,6 +295,7 @@
     #anchor-center-container {
       /* Scales fluidly from 5rem (80px) on mobile up to 10rem (160px) on wide viewports */
       --logo-base-h: clamp(4.5rem, 11vw, 10rem);
+      transform: translateY(-2.5rem);
     }
 
     #anchor-center-mark {
@@ -330,7 +361,7 @@
   <canvas id="watercolor-canvas-front"></canvas>
 
   <!-- Top Navigation Bar: Set to z-[3] so docked logo at z-[5] sits in front of navbar blur -->
-  <header id="main-header" class="fixed top-0 left-0 w-full z-[3] flex items-center justify-between px-6 sm:px-10 md:px-16 pointer-events-none">
+  <header id="main-header" class="fixed top-0 left-0 w-full z-[3] flex items-center justify-between px-6 sm:px-10 md:px-16 pointer-events-none is-pre-reveal">
     <!-- Continuous frosted glass backdrop extending through the status bar -->
     <div id="nav-blur-bg" class="nav-blur-bg"></div>
     
@@ -345,7 +376,7 @@
     </div>
 
     <!-- Desktop Navigation Links (Visible on desktop md+) -->
-    <nav class="hidden md:flex items-end h-8 gap-8 lg:gap-10 pointer-events-auto select-none">
+    <nav id="desktop-nav" class="hidden md:flex items-end h-8 gap-8 lg:gap-10 pointer-events-auto select-none is-pre-reveal">
       <a 
         href="#games" 
         class="text-base font-logo font-black tracking-wider text-white nav-link-heavy hover:text-brand hover:drop-shadow-[0_0_12px_rgba(255,0,106,0.6)] transition-all duration-200 leading-none"
@@ -371,7 +402,7 @@
   <button 
     id="menu-toggle-btn" 
     onclick="toggleMenu()" 
-    class="pointer-events-auto fixed right-2 sm:right-6 z-[90] w-14 h-14 flex md:hidden items-center justify-center cursor-pointer group focus:outline-none transition-all duration-300 -translate-y-1.5"
+    class="pointer-events-auto fixed right-2 sm:right-6 z-[90] w-14 h-14 flex md:hidden items-center justify-center cursor-pointer group focus:outline-none transition-all duration-300 -translate-y-1.5 is-pre-reveal"
     aria-label="Toggle Fullscreen Menu"
     aria-expanded="false"
   >
@@ -445,7 +476,7 @@
   </div>
 
   <!-- Flight stage set to z-[5] so it sits in front of the navbar blur (z-[3]) but underneath the front mask canvas (z-10) -->
-  <div id="flight-stage" class="fixed inset-0 pointer-events-none z-[5] overflow-hidden transition-opacity duration-300">
+  <div id="flight-stage" class="fixed inset-0 pointer-events-none z-[5] overflow-hidden transition-opacity duration-300 is-pre-reveal">
     
     <!-- 1. The Autonomous Pelican Mark (Loads external SVG) -->
     <div id="fly-pelican" class="absolute top-0 left-0 will-change-transform cursor-pointer pointer-events-auto text-brand" onclick="replayFlight()">
@@ -493,7 +524,7 @@
       </div>
 
       <!-- Scroll cue -->
-      <div id="scroll-prompt" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="scrollToStudio()">
+      <div id="scroll-prompt" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 is-pre-reveal opacity-80 hover:opacity-100 transition-opacity cursor-pointer" onclick="scrollToStudio()">
         <span class="text-xs uppercase tracking-widest text-brand font-mono font-medium">Scroll to Discover</span>
         <div class="w-5 h-8 border-2 border-brand/60 rounded-full flex justify-center pt-1">
           <div class="w-1.5 h-2 bg-brand rounded-full animate-bounce"></div>
@@ -515,11 +546,6 @@
           <p id="studio-paragraph" class="font-sans font-normal text-lg sm:text-2xl md:text-3xl leading-relaxed md:leading-snug text-white/95 text-left font-light tracking-wide max-w-2xl">
             We're a creative game studio building thoughtful, well-crafted adventures. We obsess over the details, embrace bold ideas, and make games with one simple thing in mind: fun is fun.
           </p>
-
-          <!-- Subtle scroll indicator from mockup -->
-          <div class="mt-8 flex items-center justify-center text-brand font-mono text-xs tracking-widest uppercase cursor-pointer opacity-80 hover:opacity-100 transition-opacity" onclick="scrollToGames()">
-            <span>↓ Dive in</span>
-          </div>
         </div>
       </div>
     </section>
@@ -565,10 +591,10 @@
           <div class="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-6 md:gap-8 items-end pt-16">
             <div class="md:col-span-3">
               <span class="inline-block px-3 py-1 border border-[#ffd533] text-[#ffd533] font-mono text-xs uppercase tracking-wider rounded-full mb-3 backdrop-blur-md">
-                COMING SOON
+                IN DEVELOPMENT
               </span>
               <p class="text-white text-sm sm:text-base md:text-lg leading-relaxed font-sans font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-                Pi and the Cat are always off on adventures. Playing, exploring and getting into mischief wherever they go. But this day will be unlike any other.
+                P and the Cat are always off on adventures. Playing, exploring and getting into mischief wherever they go. But this day will be unlike any other.
               </p>
             </div>
 
@@ -627,19 +653,21 @@
             </svg>
           </div>
           
-          <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
-            Nils Österling
-          </h4>
-          <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
-            CEO / Game designer
-          </span>
-          <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
-            <p>
-              Nils is an experienced leader with a deep passion for games.
-            </p>
-            <p>
-              He has managed and scaled several development teams and departments at companies such as Spotify.
-            </p>
+          <div class="px-4">
+            <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
+              Nils Österling
+            </h4>
+            <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
+              CEO / Game designer
+            </span>
+            <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
+              <p>
+                Nils is an experienced leader with a deep passion for games.
+              </p>
+              <p>
+                He has managed and scaled several development teams and departments at companies such as Spotify.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -653,19 +681,21 @@
             </svg>
           </div>
 
-          <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
-            Fredrik Gustafsson
-          </h4>
-          <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
-            CTO / DevWiz
-          </span>
-          <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
-            <p>
+          <div class="px-4">
+            <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
+                Fredrik Gustafsson
+            </h4>
+            <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
+                CTO / DevWiz
+            </span>
+            <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
+              <p>
               Fredrik is the epitome of software engineer. He actually knows how everything works and if he doesn't he’ll learn it.
-            </p>
-            <p>
+              </p>
+              <p>
               He recently left a career in cyber security at Spotify and Google.
-            </p>
+              </p>
+          </div>
           </div>
         </div>
 
@@ -679,19 +709,21 @@
             </svg>
           </div>
 
-          <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
-            Per Malmqvist
-          </h4>
-          <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
-            Creative Director
-          </span>
-          <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
-            <p>
-              Per is an idea-driven creative with a deep love for graphics, motion design and visual storytelling.
-            </p>
-            <p>
-              He has over 25 years of experience in graphic design, film, and digital production.
-            </p>
+            <div class="px-4">
+            <h4 class="font-logo font-bold text-2xl text-white tracking-tight mb-1">
+              Per Malmqvist
+            </h4>
+            <span class="text-brand font-mono text-xs uppercase tracking-wider block mb-4">
+              Creative Director
+            </span>
+            <div class="space-y-3 text-zinc-300 text-sm leading-relaxed font-sans">
+              <p>
+                Per is an idea-driven creative with a deep love for graphics, motion design and visual storytelling.
+              </p>
+              <p>
+                He has over 25 years of experience in graphic design, film, and digital production.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -723,7 +755,7 @@
         <div class="md:col-start-3 md:col-span-2 flex justify-start md:justify-center">
           <div class="flex flex-col items-start text-left space-y-4 font-mono text-xs sm:text-sm">
             <div>
-              <div class="text-brand uppercase tracking-wider text-[11px]">EMAIL:</div>
+              <div class="text-brand font-black uppercase tracking-wider text-xs">EMAIL:</div>
               <a href="mailto:info@pelicangames.se" class="text-white font-sans hover:text-brand transition-colors">
                 info@pelicangames.se
               </a>
@@ -734,7 +766,7 @@
         <!-- Box 3: Social Icons & Privacy Policy in Column 5 -->
         <div class="md:col-start-5 md:col-span-1 flex flex-col justify-between space-y-3">
           <div>
-            <div class="text-brand font-mono uppercase tracking-wider text-[11px] mb-2">SOCIAL:</div>
+            <div class="text-brand font-mono font-black uppercase tracking-wider text-xs mb-2">SOCIAL:</div>
             <!-- Social Icons matching mockup -->
             <div class="flex items-center gap-3 text-zinc-300">
               <!-- Discord Icon -->
@@ -755,7 +787,7 @@
               href="/privacy" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="inline-flex items-center mt-3 font-mono text-xs text-brand hover:underline group"
+              class="inline-flex items-center mt-3 font-mono font-black text-xs text-[11px] text-brand hover:underline group"
               aria-label="Privacy Policy (opens in a new window)"
             >
               <span>PRIVACY POLICY</span>
@@ -1395,20 +1427,76 @@
       measureAnchors();
       updateScrollMotion();
     });
+
+    function revealFlightStage() {
+      if (!flightStage) return;
+      measureAnchors();
+      updateScrollMotion();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          flightStage.classList.remove('is-pre-reveal');
+          if (mainHeader) mainHeader.classList.remove('is-pre-reveal');
+          const desktopNav = document.getElementById('desktop-nav');
+          if (desktopNav) desktopNav.classList.remove('is-pre-reveal');
+          if (menuToggleBtn) menuToggleBtn.classList.remove('is-pre-reveal');
+          if (scrollPrompt && (window.scrollY || 0) < 35) {
+            isPromptVisible = true;
+            scrollPrompt.classList.remove('is-pre-reveal');
+          }
+        });
+      });
+    }
+    window.revealFlightStage = revealFlightStage;
   </script>
   <script src="watercolor.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    const setupWatercolorReveal = () => {
       const frontCanvas = document.getElementById('watercolor-canvas-front');
       const backCanvas = document.getElementById('watercolor-canvas-back');
 
-      const watercolor = new WatercolorBackground(frontCanvas, backCanvas, {
-        inkColor: { r: 0.09, g: 0.0, b: 0.259 },
-        paperColor: { r: 0.0034, g: 0.0, b: 0.124 }
-      });
+      let isRevealed = false;
+      function triggerLogoReveal() {
+        if (isRevealed) return;
+        isRevealed = true;
+        if (typeof window.revealFlightStage === 'function') {
+          window.revealFlightStage();
+        }
+      }
 
-      watercolor.start();
-    });
+      try {
+        if (typeof WatercolorBackground !== 'undefined') {
+          const watercolor = new WatercolorBackground(frontCanvas, backCanvas, {
+            inkColor: { r: 0.09, g: 0.0, b: 0.259 },
+            paperColor: { r: 0.0034, g: 0.0, b: 0.124 },
+            onReady: triggerLogoReveal,
+            onInit: triggerLogoReveal,
+            onFirstFrame: triggerLogoReveal
+          });
+
+          const startRes = watercolor.start();
+          if (startRes && typeof startRes.then === 'function') {
+            startRes.then(triggerLogoReveal).catch(triggerLogoReveal);
+          } else {
+            requestAnimationFrame(() => {
+              requestAnimationFrame(triggerLogoReveal);
+            });
+          }
+        } else {
+          triggerLogoReveal();
+        }
+      } catch (e) {
+        console.warn('Watercolor init error:', e);
+        triggerLogoReveal();
+      }
+
+      setTimeout(triggerLogoReveal, 350);
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupWatercolorReveal);
+    } else {
+      setupWatercolorReveal();
+    }
   </script>
 </body>
 </html>

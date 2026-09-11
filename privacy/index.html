@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelican Games</title>
+    
+    <meta name="google-site-verification" content="SC7ZfmhO9fZVlcIkWCRgl2K2Rt68TRywX6kGrADKfwo" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7C0TV5QR8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E7C0TV5QR8');
+    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WSTTSMPH');</script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, #1a1a1a 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #111111 0%, transparent 40%);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hover-link {
+            transition: all 0.3s ease;
+        }
+        .hover-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <div class="bg-mesh"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full px-6 py-4 backdrop-blur-md bg-black/50 border-b border-white/5">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-xl font-extrabold tracking-tighter uppercase">Pelican Games</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-6 py-12 md:py-24 max-w-4xl">
+        <section id="privacy" class="glass-panel p-8 md:p-12 mb-20">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-zinc-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Privacy Policy for Kattjakten
+            </h2>
+            <div class="space-y-4 text-zinc-400 leading-relaxed">
+                <p>
+                    Kattjakten, developed by Pelican Games AB, values the privacy of our players, especially children. This game is designed to be a safe experience and does not collect, store, or share any personal data (such as names, emails, contacts, or location).
+                </p>
+                <p>
+                    To help us balance difficulty and improve level design, we collect limited, non-personal gameplay metrics using <strong class="text-zinc-200">GameAnalytics</strong>. This includes:
+                </p>
+                <ul class="list-disc pl-6 space-y-1">
+                    <li>A randomly generated, app-specific ID (not tied to your identity, real-world data, or device IDFA).</li>
+                    <li>Anonymous gameplay metrics, specifically how long it takes players to complete quests and find hidden items.</li>
+                </ul>
+                <p>
+                    We do not display third-party advertisements, nor do we track users across other apps or websites. All telemetry data is used solely for internal game optimization.
+                </p>
+                <p class="text-sm italic pt-2">
+                    If our practices ever change, we will update this privacy policy and inform users accordingly. If you have questions, please contact Pelican Games AB at <a href="mailto:info@pelicangames.se" class="underline hover:text-zinc-200">info@pelicangames.se</a>.
+                </p>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

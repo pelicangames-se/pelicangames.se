@@ -21,7 +21,7 @@ class WatercolorBackground {
       viscosityThickness: options.viscosityThickness ?? 1.0,
       drySaturationCap: options.drySaturationCap ?? 1.0,
       brushRadius: options.brushRadius ?? (window.innerWidth < 768 ? 0.00065 : 0.001),
-      pressureSolveIterations: options.pressureSolveIterations ?? 10,
+      pressureSolveIterations: options.pressureSolveIterations ?? 5,
       impulseForceScale: options.impulseForceScale ?? 2200.0,
       inkColor: options.inkColor ?? { r: 1.0, g: 0.08, b: 0.39 },
       paperColor: options.paperColor ?? { r: 0.071, g: 0.067, b: 0.078 },
